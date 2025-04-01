@@ -1,0 +1,332 @@
+/* Layout Container */
+.layout-container {
+    display: flex;
+    gap: 2rem;
+    padding: 2rem;
+    max-width: 1200px; /* Limit max width for better readability */
+    margin: 0 auto;
+    min-height: 100vh;
+}
+
+/* Editor Section */
+.editor-section {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    max-width: 500px;
+}
+
+.editor-controls {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1rem;
+    padding: 1rem;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Add shadow for depth */
+}
+
+.print-button,
+.clear-button {
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.2s ease;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.print-button {
+    background-color: #4CAF50;
+    color: white;
+    flex: 2;
+}
+
+.print-button:hover:not(:disabled) {
+    background-color: #45a049;
+    transform: translateY(-1px);
+}
+
+.clear-button {
+    background-color: #f44336;
+    color: white;
+    flex: 1;
+}
+
+.clear-button:hover:not(:disabled) {
+    background-color: #da190b;
+    transform: translateY(-1px);
+}
+
+.print-button:disabled,
+.clear-button:disabled {
+    background-color: #e0e0e0;
+    cursor: not-allowed;
+    transform: none;
+}
+
+/* PDF Preview Section */
+.pdf-preview {
+    flex: 1;
+    max-width: 800px;
+    background-color: #fff;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.pdf-container {
+    padding: 2rem;
+    background-color: white;
+}
+
+/* Header Styling */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 2rem;
+    border-bottom: 2px solid #f0f0f0;
+}
+
+.logo-box {
+    max-width: 200px;
+}
+
+.contact-info {
+    text-align: right;
+    font-size: 0.9rem;
+    color: #333;
+}
+
+/* Main Content */
+.main-content {
+    padding: 2rem;
+    min-height: 500px;
+    background-color: white;
+    border: 1px solid #eee;
+    border-radius: 8px;
+    margin: 2rem 0;
+}
+
+.content-wrapper {
+    min-height: 500px;
+    padding: 1rem;
+}
+
+/* Footer Styling */
+.footer1 {
+    background-color: #000 !important;
+    padding: 1rem;
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.footer1 a {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    text-decoration: none;
+    font-size: 0.9rem;
+}
+
+.footer1 i {
+    padding: 0.5rem;
+    border-radius: 50%;
+    font-size: 1.2rem;
+}
+
+footer:last-child {
+    padding: 1rem;
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    background-color: #f8f9fa;
+}
+
+footer:last-child a {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    text-decoration: none;
+    color: #000;
+    font-size: 0.9rem;
+}
+
+footer:last-child i {
+    padding: 0.5rem;
+    border-radius: 50%;
+    font-size: 1.2rem;
+}
+
+/* Character Count */
+.character-count {
+    margin-top: 1rem;
+    padding: 0.5rem;
+    background-color: #f8f9fa;
+    border-radius: 4px;
+    text-align: right;
+    font-size: 0.9rem;
+    color: #666;
+}
+
+/* Print styles */
+@media print {
+    @page {
+        size: A4;
+        margin: 0.5in;
+    }
+
+    body * {
+        visibility: hidden;
+    }
+    
+    .pdf-container,
+    .pdf-container * {
+        visibility: visible;
+    }
+    
+    .pdf-container {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        padding: 0;
+        margin: 0;
+    }
+    
+    header {
+        position: running(header);
+        width: 100%;
+        padding: 20px;
+        background-color: white;
+    }
+    
+    .main-content {
+        margin-top: 120px;
+        margin-bottom: 160px;
+    }
+    
+    .footer1,
+    footer:last-child {
+        position: running(footer);
+        width: 100%;
+        padding: 10px;
+        background-color: white;
+    }
+    
+    .footer1 {
+        bottom: 60px;
+    }
+    
+    footer:last-child {
+        bottom: 0;
+    }
+    
+    .editor-section,
+    .editor-controls,
+    .character-count,
+    .placeholder-text {
+        display: none !important;
+    }
+    
+    .content-wrapper {
+        page-break-inside: auto;
+    }
+}
+
+/* Responsive Design */
+@media screen and (max-width: 1200px) {
+    .layout-container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .editor-section,
+    .pdf-preview {
+        width: 100%;
+        max-width: 800px;
+    }
+
+    .pdf-preview {
+        max-width: 100%; /* Allow PDF preview to take full width */
+    }
+
+    .pdf-container {
+        padding: 1rem; /* Reduce padding on smaller screens */
+    }
+
+    .main-content {
+        padding: 1rem; /* Reduce padding for main content */
+    }
+}
+
+/* ReactQuill Custom Styling */
+.quill {
+    border-radius: 8px;
+    border: 1px solid #ddd;
+}
+
+.ql-toolbar {
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    background-color: #f8f9fa;
+    border-bottom: 1px solid #ddd;
+}
+
+.ql-container {
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+    min-height: 300px;
+}
+
+.ql-editor {
+    min-height: 300px;
+    font-size: 1rem;
+    line-height: 1.6;
+}
+
+.placeholder-text {
+    color: #666;
+    font-style: italic;
+    text-align: center;
+    padding: 2rem;
+}
+
+/* Hide print-only elements when not printing */
+@media screen {
+    .print-header,
+    .print-footer {
+        display: none;
+    }
+}
+
+.main-content {
+    max-height: 800px;
+    overflow-y: auto; /* Enable vertical scrolling */
+    padding: 1rem; /* Optional: Add some padding */
+    border: 1px solid #ccc; /* Optional: Add a border for better visibility */
+    border-radius: 4px; /* Optional: Add rounded corners */
+}
+
+.content-wrapper {
+    max-height: 800px; /* Restrict visible height */
+    overflow-y: auto; /* Enable vertical scrolling */
+    padding: 1rem; /* Optional: Add some padding */
+    border: 1px solid #ccc; /* Optional: Add a border for better visibility */
+    border-radius: 4px; /* Optional: Add rounded corners */
+}
+
+.limit-message {
+    color: #f44336;
+    font-weight: bold;
+}
+
+/* Make the editor look disabled when limit is reached */
+.ql-container.ql-disabled {
+    background-color: #f5f5f5;
+}
