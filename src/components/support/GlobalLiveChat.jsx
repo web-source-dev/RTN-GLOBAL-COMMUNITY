@@ -158,7 +158,7 @@ const GlobalLiveChat = () => {
       console.log('Chat room initialized:', roomResponse.data);
 
       // Connect to socket with explicit URL and proper options
-      const socketURL = process.env.REACT_APP_BACKEND_URL || 'http://backend.mydomain.local:5000';
+      const socketURL = process.env.REACT_APP_API_URL || 'http://backend.mydomain.local:5000';
       console.log('Connecting to socket at:', socketURL);
       
       const newSocket = io(socketURL, {
